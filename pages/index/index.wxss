@@ -1,0 +1,66 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #efefef;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.search-input {
+  background-color: #fff;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 书籍列表项样式 */
+.book-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  margin: 10rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.cover {
+  width: 160rpx;
+  height: 220rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 操作按钮样式 */
+.actions button {
+  margin-left: 10rpx;
+  line-height: 1.4;
+}
+
+/* 加载提示样式 */
+.loading, .no-more {
+  text-align: center;
+  padding: 20rpx;
+  color: #888;
+}

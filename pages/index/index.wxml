@@ -1,0 +1,72 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input 
+      placeholder="输入书名或作者" 
+      bindinput="onSearchInput" 
+      class="search-input"
+      value="{{searchText}}"
+    />
+  </view>
+
+  <!-- 操作工具栏 -->
+  <view class="toolbar">
+    <button size="mini" bindtap="onAddBook">新增书籍</button>
+    <button 
+      size="mini" 
+      type="warn" 
+      bindtap="onBatchDelete"
+      hidden="{{!selectedBooks.length}}"
+    >
+      批量删除({{selectedBooks.length}})
+    </button>
+  </view>
+
+  <!-- 书籍列表 -->
+  <scroll-view 
+    scroll-y 
+    style="height: {{scrollHeight}}px" 
+    bindscrolltolower="loadMore"
+  >
+    <view class="book-list">
+      <block wx:for="{{books}}" wx:key="id">
+        <view class="book-item {{item.checked ? 'checked' : ''}}">
+          <checkbox 
+            checked="{{item.checked}}" 
+            bindtap="toggleCheck" 
+            data-id="{{item.id}}"
+          />
+          
+          <image 
+            src="{{item.cover || '/images/default-cover.png'}}" 
+            mode="aspectFill" 
+            class="cover"
+          />
+          
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="author">{{item.author}}</text>
+            <text class="date">{{item.publishDate}}</text>
+          </view>
+
+          <view class="actions">
+            <button 
+              size="mini" 
+              data-id="{{item.id}}" 
+              bindtap="onEditBook"
+            >编辑</button>
+            <button 
+              size="mini" 
+              type="warn" 
+              data-id="{{item.id}}" 
+              bindtap="onDeleteBook"
+            >删除</button>
+          </view>
+        </view>
+      </block>
+      
+      <view class="loading" wx:if="{{isLoading}}">加载中...</view>
+      <view class="no-more" wx:if="{{noMoreData}}">没有更多了</view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,51 @@
+{
+  "entryPagePath": "pages/login/login",
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/person/person",
+    "pages/detail/detail",
+    "pages/edit/edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#764ba2",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "欢迎登录",
+    "backgroundColorTop": "#764ba2",
+    "backgroundColorBottom": "#ffffff"
+  },
+  "tabBar": {
+    "selectedColor": "#f3524f",
+    "color": "#666",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/home.png",
+        "selectedIconPath": "assets/images/home.png"
+      },
+      {
+        "text": "分类",
+        "pagePath": "pages/category/category",
+        "iconPath": "assets/images/home.png",
+        "selectedIconPath": "assets/images/home.png"
+      },{
+        "text": "购物车",
+        "pagePath": "pages/cart/cart",
+        "iconPath": "assets/images/home.png",
+        "selectedIconPath": "assets/images/home.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/person/person",
+        "iconPath": "assets/images/home.png",
+        "selectedIconPath": "assets/images/home.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

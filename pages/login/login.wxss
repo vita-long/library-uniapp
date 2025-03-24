@@ -1,0 +1,127 @@
+/* pages/login/login.wxss */
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60rpx 40rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80rpx;
+  animation: fadeInDown 0.6s;
+}
+
+.logo {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+.form-container {
+  width: 100%;
+  animation: slideUp 0.8s ease-out;
+}
+
+.input-group {
+  margin-bottom: 50rpx;
+  position: relative;
+}
+
+.input-item {
+  background: rgba(255,255,255,0.9);
+  border-radius: 50rpx;
+  padding: 30rpx 40rpx;
+  font-size: 32rpx;
+  transition: all 0.3s ease;
+  box-shadow: 0 6rpx 20rpx rgba(0,0,0,0.05);
+}
+
+.input-item:focus {
+  transform: scale(1.02);
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.1);
+}
+
+.placeholder-style {
+  color: #999 !important;
+}
+
+.login-btn {
+  background: linear-gradient(45deg, #7c4dff, #647dee);
+  color: #fff;
+  width: 100%;
+  height: 100rpx;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  letter-spacing: 4rpx;
+  transition: all 0.3s ease;
+  box-shadow: 0 8rpx 25rpx rgba(124,77,255,0.3);
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.links {
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20rpx;
+}
+
+.link-text {
+  color: rgba(255,255,255,0.8);
+  font-size: 28rpx;
+  position: relative;
+}
+
+.link-text::after {
+  content: '';
+  position: absolute;
+  bottom: -6rpx;
+  left: 0;
+  width: 0;
+  height: 2rpx;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.link-text:hover::after {
+  width: 100%;
+}
+
+/* 动画效果 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-60rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

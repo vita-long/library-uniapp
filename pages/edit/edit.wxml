@@ -1,0 +1,32 @@
+<view class="container">
+  <form bindsubmit="onSubmit">
+    <view class="form-item">
+      <text class="label">书名</text>
+      <input 
+        name="title" 
+        value="{{book.title}}" 
+        placeholder="请输入书名"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="label">作者</text>
+      <input 
+        name="author" 
+        value="{{book.author}}" 
+        placeholder="请输入作者"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="label">封面</text>
+      <image 
+        src="{{book.cover || '/images/default-cover.png'}}" 
+        class="cover"
+        bindtap="chooseCover"
+      />
+    </view>
+
+    <button formType="submit" class="submit-btn">保存</button>
+  </form>
+</view>
