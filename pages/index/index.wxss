@@ -19,7 +19,6 @@ page {
 /* 书籍列表项样式 */
 .book-item {
   display: flex;
-  align-items: center;
   padding: 15rpx;
   margin: 10rpx;
   background: #fff;
@@ -34,15 +33,14 @@ page {
   margin-right: 20rpx;
 }
 
-.info {
-  flex: 1;
+.book-text {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .title {
-  font-size: 32rpx;
+  font-size: 36rpx;
   color: #333;
   font-weight: bold;
   overflow: hidden;

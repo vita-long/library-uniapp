@@ -6,6 +6,15 @@ Page({
     loading: false
   },
 
+  onLoad() {
+    const isLogin = auth.isLoggedIn();
+    if(isLogin) {
+      wx.reLaunch({
+        url: '/pages/index/index',
+      })
+    }
+  },
+
   async onSubmit(e) {
     const { username, password } = e.detail.value
     if (!this.validateInput(username, password)) return
@@ -15,7 +24,7 @@ Page({
     try {
       const success = await auth.login(username, password)
       if (success) {
-        // wx.reLaunch({ url: '/pages/index/index' })
+        wx.reLaunch({ url: '/pages/index/index' })
       }
     } finally {
       this.setData({ loading: false })

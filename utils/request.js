@@ -13,18 +13,20 @@ const createRequest = () => {
       
       wx.request({
         ...options,
-        header: {
-          'Authorization': `Bearer ${loginToken}`,
-          'X-CSRF-TOKEN': csrfToken,
+        header: { 
+          'authorization': `Bearer ${loginToken}`,
+          'X-XSRF-TOKEN': csrfToken,
+          withCredentials: true,
           ...options.header
         },
         success: (res) => {
           // 处理 Token 过期
           if (res.statusCode === 401 && pendingRequestCount === 1) {
-            auth.clearTokens()
+            auth.clearTokens();
             wx.reLaunch({ url: '/pages/login/login' })
+            resolve(res)
           }
-          resolve(res.data)
+          resolve(res)
         },
         fail: reject,
         complete: () => pendingRequestCount--

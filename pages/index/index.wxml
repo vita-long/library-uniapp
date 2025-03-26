@@ -38,29 +38,32 @@
           />
           
           <image 
-            src="{{item.cover || '/images/default-cover.png'}}" 
+            src="{{item.cover || '../../assets/images/default-header.jpeg'}}" 
             mode="aspectFill" 
             class="cover"
           />
-          
-          <view class="info">
-            <text class="title">{{item.title}}</text>
-            <text class="author">{{item.author}}</text>
-            <text class="date">{{item.publishDate}}</text>
-          </view>
-
-          <view class="actions">
-            <button 
-              size="mini" 
-              data-id="{{item.id}}" 
-              bindtap="onEditBook"
-            >编辑</button>
-            <button 
-              size="mini" 
-              type="warn" 
-              data-id="{{item.id}}" 
-              bindtap="onDeleteBook"
-            >删除</button>
+          <view class="book-text">
+            <view class="info">
+              <text class="title">{{item.bookName}}</text>
+            </view>
+  
+            <view class="actions">
+              <text class="author">作者：{{item.author}}</text>
+            </view>
+            <view>
+              <button 
+                size="mini" 
+                data-id="{{item.id}}" 
+                bindtap="onEditBook"
+              >编辑</button>
+              <button 
+                size="mini" 
+                type="warn" 
+                data-id="{{item.id}}"
+                data-name="{{item.bookName}}"
+                bindtap="onDeleteBook"
+              >删除</button>
+            </view>
           </view>
         </view>
       </block>

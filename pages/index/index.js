@@ -1,3 +1,6 @@
+import { http } from "../../utils/request"
+import { DOMAIN_URL } from '../../constants/index';
+
 Page({
   data: {
     books: [],
@@ -29,7 +32,7 @@ Page({
 
   // 计算滚动区域高度
   calculateScrollHeight() {
-    const sysInfo = wx.getSystemInfoSync()
+    const sysInfo = wx.getWindowInfo()
     const query = wx.createSelectorQuery()
     query.select('.search-bar').boundingClientRect()
     query.select('.toolbar').boundingClientRect()
@@ -45,26 +48,25 @@ Page({
 
     this.setData({ isLoading: true })
     try {
-      const res = await wx.request({
-        url: 'http://localhost:4000/books',
-        method: 'GET',
-        headers: {
-          
-        },
+      const res = await http({
+        url: `${DOMAIN_URL}/books`,
+        method: 'GET', 
         data: {
           current: this.data.currentPage,
           pageSize: this.data.pageSize,
           search: this.data.searchText
         }
       })
-      console.log(res)
 
-      this.setData({
-        books: [...this.data.books, ...res.data.list],
-        total: res.data.total,
-        currentPage: this.data.currentPage + 1,
-        noMoreData: this.data.books.length >= res.data.total
-      })
+      const result = res.data;
+      if (result.code === 0) {
+        this.setData({
+          books: [...this.data.books, ...result.data.list],
+          total: result.data.total,
+          currentPage: this.data.currentPage + 1,
+          noMoreData: this.data.books.length >= res.data.total
+        })
+      }
     } catch (error) {
       wx.showToast({ title: '加载失败', icon: 'none' })
     } finally {
@@ -104,8 +106,8 @@ Page({
 
     if (res.confirm) {
       try {
-        await wx.pro.request({
-          url: '/api/books/batch',
+        await http({
+          url: `${DOMAIN_URL}/books`,
           method: 'DELETE',
           data: { ids: this.data.selectedBooks }
         })
@@ -113,6 +115,29 @@ Page({
         this.setData({
           books: this.data.books.filter(book => !book.checked),
           selectedBooks: []
+        })
+      } catch (error) {
+        wx.showToast({ title: '删除失败', icon: 'none' })
+      }
+    }
+  },
+
+  async onDeleteBook(e) {
+    const book = e.currentTarget.dataset
+    const res = await wx.showModal({
+      title: '确认删除',
+      content: `确定删除名称为【${book.name}】的书籍吗？`
+    })
+
+    if (res.confirm) {
+      try {
+        await http({
+          url: `${DOMAIN_URL}/books/${book.id}`,
+          method: 'DELETE'
+        })
+        
+        this.setData({
+          books: this.data.books.filter(bk => bk.id !== book.id)
         })
       } catch (error) {
         wx.showToast({ title: '删除失败', icon: 'none' })

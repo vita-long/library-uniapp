@@ -1,7 +1,10 @@
+import { DOMAIN_URL } from "../../constants/index";
+import { http } from "../../utils/request"
+
 Page({
   data: {
     book: {
-      title: '',
+      bookName: '',
       author: '',
       cover: ''
     },
@@ -18,8 +21,8 @@ Page({
   // 加载书籍详情
   async loadBookDetail(id) {
     try {
-      const res = await wx.pro.request({
-        url: `/api/books/${id}`
+      const res = await http({
+        url: `${DOMAIN_URL}/books/${id}`
       })
       this.setData({ book: res.data })
     } catch (error) {
@@ -64,20 +67,21 @@ Page({
     const { book, isNew } = this.data
 
     const payload = {
-      ...formData,
-      cover: book.cover
+      ...formData
     }
+
+    console.log(payload);
 
     try {
       if (isNew) {
-        await wx.pro.request({
-          url: '/api/books',
+        await http({
+          url: `${DOMAIN_URL}/books`,
           method: 'POST',
           data: payload
         })
       } else {
-        await wx.pro.request({
-          url: `/api/books/${book.id}`,
+        await http({
+          url: `${DOMAIN_URL}/books/${book.id}`,
           method: 'PUT',
           data: payload
         })
